@@ -1,0 +1,30 @@
+# Python virtual environment
+env/
+venv/
+.venv/
+bin/
+include/
+lib/
+share/
+pyvenv.cfg
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Streamlit
+.streamlit/config.toml
+.streamlit/static/
+
+# Environment variables (PENTING: Jangan upload API Key!)
+.env
+*.env
+
+# Mac system files
+.DS_Store
+
+# LlamaIndex & Data (Opsional)
+# Jika folder 'Data' berisi dokumen pribadi, aktifkan baris di bawah ini
+# Data/
+storage/
