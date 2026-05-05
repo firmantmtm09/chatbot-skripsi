@@ -27,4 +27,4 @@ __pycache__/
 # LlamaIndex & Data (Opsional)
 # Jika folder 'Data' berisi dokumen pribadi, aktifkan baris di bawah ini
 # Data/
-storage/
+storage/git

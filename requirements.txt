@@ -7,8 +7,12 @@ llama-index-llms-groq
 llama-index-embeddings-huggingface
 llama-index-readers-file
 
-# Dependencies & Fixes untuk Keras/HuggingFace
+# Pemrosesan Bahasa (NER Skripsi)
+spacy
+
+# Dependencies Pendukung
 transformers==4.44.2
 h5py
 rich
 tf-keras
+watchdog
