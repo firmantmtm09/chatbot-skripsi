@@ -1,0 +1,222 @@
+question,answer,contexts,ground_truth,faithfulness,answer_relevance,context_precision
+Apa syarat penerbitan kembali KK karena rusak atau hilang?,"Selamat datang, Bapak/Ibu. Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya akan membantu Anda mengetahui syarat penerbitan kembali Kartu Keluarga (KK) karena rusak atau hilang.
+
+Dalam konteks dokumen yang disediakan, saya tidak menemukan informasi spesifik tentang syarat penerbitan kembali KK karena rusak atau hilang. Namun, berdasarkan pengetahuan internal saya, syarat umum untuk penerbitan kembali KK karena rusak atau hilang adalah sebagai berikut:
+
+1. Berusia minimal 17 tahun atau sudah pernah menikah.
+2. Membawa fotokopi Kartu Keluarga (KK) yang masih berlaku.
+3. Membawa dokumen pendukung lainnya, seperti fotokopi Akte Kelahiran, Akte Perkawinan/Surat Nikah, atau Akte Perceraian.
+
+Saya sarankan Anda untuk mengunjungi website resmi Dukcapil DKI Jakarta atau menghubungi Dukcapil terdekat untuk memastikan informasi yang akurat dan terbaru.
+
+Apakah Anda memiliki pertanyaan lain?","Pener bitan KK terdiri dari : Penerbitan KK Baru, Penerbitan KK karena perubahan data, dan Penerbitan KK karena hilang atau rusak. Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan :","Surat keterangan hilang dari kepolisian (jika hilang) atau membawa KK yang rusak (jika rusak), serta KTP-el.",0.2,0.6,0.1
+Apa saja persyaratan dokumen untuk melakukan pindah datang ke DKI Jakarta?,"Selamat datang di layanan Dukcapil DKI Jakarta. Saya senang membantu Anda mengetahui persyaratan dokumen untuk melakukan pindah datang ke DKI Jakarta.
+
+Berikut adalah persyaratan dokumen yang diperlukan:
+
+1. Surat Keterangan Pindah dari daerah asal;
+2. Biodata Penduduk;
+3. Surat Pernyataan Jaminan Tempat Tinggal dari Pemilik Rumah/Pengelola Rusun/Pengelola Apartemen (jika menumpang);
+4. KK dan KTP Penjamin (jika menumpang);
+5. Fotokopi Akta Kelahiran;
+6. Fotokopi Akta Perkawinan/Surat Nikah atau akta perceraian (bagi yang berstatus kawin atau cerai hidup).
+
+Namun, perlu diingat bahwa jika biodata penduduk sudah terisi lengkap dan benar, maka persyaratan No. 5 dan 6 tidak diperlukan. Jika pemohon belum memiliki akta kelahiran, maka akan memperoleh pelayanan pembuatan Akta Kelahiran.
+
+Selain itu, jika Anda adalah pegawai negeri sipil (SKPD), maka permohonan SKPD dilakukan bersamaan dengan permohonan KK dan KTP baru.
+
+Saya harap informasi ini membantu Anda. Jika Anda memiliki pertanyaan lain, silakan bertanya.","dokumen imigrasi, Nama orang tua, dan tanda tangan kepala keluarga, Peristiwa Penting/dokumen pendukung perubahan (FC Surat Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan :","Surat Keterangan Pindah dari daerah asal, Biodata Penduduk, Surat Pernyataan Jaminan Tempat Tinggal dari Pemilik Rumah/Pengelola Rusun/Apartemen jika menumpang, KK dan KTP Penjamin jika menumpang, fotokopi Akta Kelahiran, serta fotokopi Akta Perkawinan/Surat Nikah atau akta perceraian jika berstatus kawin/cerai hidup.",0.95,0.95,0.8
+Bagaimana prosedur pengurusan pindah datang di Kelurahan tujuan?,"Selamat datang, Bapak/Ibu. Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya dengan senang hati membantu menjawab pertanyaan Anda tentang prosedur pengurusan pindah datang di Kelurahan tujuan.
+
+Untuk pengurusan pindah datang, Anda perlu mengikuti prosedur sebagai berikut:
+
+1. Pemohon mengambil nomor antrian di Loket Dukcapil Kelurahan.
+2. Pemohon menyerahkan berkas lengkap ke Loket Dukcapil, yaitu:
+ * Surat Keterangan Pindah dari daerah asal;
+ * Biodata Penduduk;
+ * Surat Pernyataan Jaminan Tempat Tinggal dari Pemilik Rumah/Pengelola Rusun/Pengelola Apartemen (jika menumpang);
+ * KK dan KTP Penjamin (jika menumpang);
+ * Fotokopi Akta Kelahiran;
+ * Fotokopi Akta Perkawinan/Surat Nikah atau akta perceraian (bagi yang berstatus kawin atau cerai hidup).
+3. Petugas menerima berkas dan melakukan verifikasi berkas.
+4. Petugas menyerahkan bukti permohonan kepada Pemohon.
+5. Petugas memproses pengantar Surat Keterangan Pindah datang.
+6. Petugas menyerahkan pengantar Surat Keterangan Pindah datang kepada Pemohon.
+7. Petugas mengajukan proses Surat Keterangan Pindah Datang ke Sudin.
+
+Saya harap informasi ini dapat membantu Anda, Bapak/Ibu. Jika Anda memiliki pertanyaan lain, silakan bertanya.",Dokumen Panduan Standar Pelayanan Kependudukan Dinas Dukcapil DKI Jakarta.,"Pemohon mengambil nomor antrian di Loket Dukcapil Kelurahan, menyerahkan berkas lengkap, petugas memproses verifikasi dan memberikan bukti permohonan, memproses pengantar Surat Keterangan Pindah datang, lalu petugas mengajukan proses ke Sudin Dukcapil untuk memproses KK dan KTP baru.",0.95,0.9,0.95
+Apa saja persyaratan pencatatan kelahiran WNI yang terintegrasi dengan faskes?,"Selamat datang! Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya akan memberikan informasi akurat mengenai syarat layanan dokumen kependudukan.
+
+Untuk pertanyaan Anda tentang persyaratan pencatatan kelahiran WNI yang terintegrasi dengan faskes, saya akan mencari jawaban dari Context Dokumen yang disediakan.
+
+Dari Context Dokumen, saya tidak menemukan informasi langsung tentang persyaratan pencatatan kelahiran WNI yang terintegrasi dengan faskes. Namun, saya dapat memberikan informasi yang relevan berdasarkan pengetahuan internal saya.
+
+Untuk pencatatan kelahiran WNI, biasanya diperlukan beberapa dokumen, seperti:
+
+1. Fotokopi Akta Kelahiran
+2. Fotokopi KK dan KTP
+3. Dokumen autentik pendukung (jika diperlukan)
+
+Namun, saya tidak dapat menemukan informasi tentang integrasi dengan faskes. Oleh karena itu, saya akan memberikan jawaban yang lebih umum.
+
+Untuk pencatatan kelahiran WNI, Anda dapat mengikuti prosedur sebagai berikut:
+
+1. Mengambil nomor antrian di Loket Dukcapil Kelurahan
+2. Menyerahkan berkas lengkap ke Loket Dukcapil
+3. Petugas menerima berkas dan melakukan verifikasi
+4. Petugas menyerahkan bukti permohonan kepada Pemohon
+5. Petugas memproses pengantar Surat Keterangan Pindah datang
+
+Namun, saya sarankan Anda untuk menghubungi Dukcapil DKI Jakarta langsung untuk mendapatkan informasi yang lebih akurat dan terkini tentang persyaratan pencatatan kelahiran WNI yang terintegrasi dengan faskes.
+
+Terima kasih atas pertanyaan Anda!","Kewarganegaraan, pembetulan Akta Pencatatan Sipil, dan pembatalan Akta Pencatatan Sipil. Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan 1. Standar Pelayanan Pencatatan Kelahir an WNI Ter integr asi Persyaratan Pelayanan : 2. Standar Pelayanan Pencatatan Kematian WNI Ter integr asi Persyaratan Pelayanan :","Surat Keterangan peristiwa kelahiran, fotokopi Surat Nikah/Akta Perkawinan orang tua atau SPTJM, serta fotokopi KK dan KTP-el orang tua.",0.2,0.4,0.6
+Siapa nama Kepala Dinas Kependudukan dan Pencatatan Sipil Provinsi DKI Jakarta saat ini?,"Selamat datang! Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya dapat memberikan informasi yang akurat dan terkini tentang syarat layanan dokumen kependudukan.
+
+Untuk pertanyaan Anda tentang nama Kepala Dinas Kependudukan dan Pencatatan Sipil Provinsi DKI Jakarta saat ini, saya tidak menemukan informasi yang relevan dalam konteks dokumen yang disediakan. Namun, saya dapat memberikan informasi bahwa Denny Wahyu Har yanto merupakan Kepala Dinas Kependudukan dan Pencatatan Sipil Provinsi DKI Jakarta yang telah dipaparkan dalam dokumen tersebut.
+
+Jika Anda ingin mendapatkan informasi yang lebih terkini, saya sarankan Anda untuk mengunjungi situs web resmi Dukcapil DKI Jakarta atau menghubungi langsung dengan Dukcapil DKI Jakarta untuk mendapatkan informasi yang paling akurat.","lengkap tentang identitas Kepala Keluarga dan anggota keluarganya. b. penggantian Kepala Keluarga d. pindah datang yang tidak diikuti oleh kepala keluarga Nama kepala keluarga atau anggota keluarga, jenis kelamin, tempat lahir, dokumen imigrasi, Nama orang tua, dan tanda tangan kepala keluarga, KEPALA DINAS KEPENDUDUKAN DAN PENCATATAN SIPIL PROVINSI",Denny Wahyu Haryanto.,0.8,0.9,0.7
+Apa saja syarat untuk melakukan pencatatan perkawinan bagi sesama WNI?,"Selamat datang, Bapak/Ibu. Saya senang membantu menjawab pertanyaan Anda tentang syarat pencatatan perkawinan bagi sesama WNI.
+
+Dalam konteks pencatatan perkawinan, syarat yang diperlukan adalah sebagai berikut:
+
+1. Fotokopi Kartu Keluarga (KK) dan Kartu Tanda Penduduk (KTP) dari pasangan yang akan menikah.
+2. Asli dan fotokopi Kutipan Akta Pencatatan Sipil.
+3. Dokumen autentik pendukung pencatatan perkawinan, seperti surat keterangan dari keluarga atau surat keterangan dari tempat kerja.
+
+Namun, perlu diingat bahwa syarat-syarat di atas dapat berbeda-beda tergantung pada kebutuhan dan kondisi spesifik. Oleh karena itu, saya sarankan Anda untuk mengunjungi situs web resmi Dukcapil DKI Jakarta atau menghubungi langsung Dukcapil untuk mendapatkan informasi yang lebih akurat dan terbaru.
+
+Selain itu, Anda juga dapat mengajukan permohonan daring melalui alamat https://alpukat-dukcapil.jakarta.go.id/ untuk memudahkan proses pencatatan perkawinan.
+
+Semoga informasi ini membantu, Bapak/Ibu. Jika Anda memiliki pertanyaan lain, jangan ragu untuk bertanya.",Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : untuk mengemban amanah sebagai Kepala Dinas Kependudukan dan,"Fotokopi surat keterangan telah terjadinya perkawinan dari pemuka agama atau penghayat kepercayaan terhadap Tuhan YME, pas foto berwarna suami dan istri berdampingan ukuran 4x6 sebanyak 2 lembar, KTP-el dan KK asli, serta fotokopi akta perceraian/akta kematian jika berstatus cerai.",0.2,0.6,0.1
+Apa syarat melakukan pencatatan perceraian bagi penduduk WNI?,"Selamat datang, Bapak/Ibu. Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya akan membantu menjawab pertanyaan Anda tentang syarat melakukan pencatatan perceraian bagi penduduk WNI.
+
+Dalam konteks dokumen yang disediakan, saya tidak menemukan informasi langsung tentang syarat pencatatan perceraian. Namun, berdasarkan pengetahuan internal saya, syarat umum untuk melakukan pencatatan perceraian bagi penduduk WNI adalah sebagai berikut:
+
+1. Fotokopi Kartu Keluarga (KK) dan Kartu Tanda Penduduk (KTP) yang masih berlaku.
+2. Asli dan fotokopi Akta Perkawinan/Surat Nikah.
+3. Dokumen autentik pendukung pembetulan akta pencatatan sipil, seperti surat pernyataan jaminan tempat tinggal dari pemilik rumah atau pengelola apartemen (jika menumpang).
+4. Biodata penduduk yang lengkap dan benar.
+
+Namun, perlu diingat bahwa syarat-syarat di atas dapat berbeda-beda tergantung pada kebijakan dan regulasi yang berlaku. Oleh karena itu, saya sarankan Anda untuk menghubungi Dukcapil DKI Jakarta atau mengunjungi loket Dukcapil terdekat untuk mendapatkan informasi yang lebih akurat dan terkini.
+
+Apakah Anda memiliki pertanyaan lain, Bapak/Ibu?","Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : • Persyaratan No. 5 dan 6 tidak diperlukan, jika biodata penduduk sudah","Fotokopi salinan putusan pengadilan yang telah mempunyai kekuatan hukum tetap, kutipan akta perkawinan asli, KTP-el asli, dan KK asli.",0.2,0.6,0.1
+Bagaimana syarat menerbitkan kembali kutipan akta pencatatan sipil yang rusak atau hilang?,"Selamat datang, Bapak/Ibu. Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya dengan senang hati membantu menjawab pertanyaan Anda tentang syarat menerbitkan kembali kutipan akta pencatatan sipil yang rusak atau hilang.
+
+Dalam konteks dokumen yang disediakan, saya tidak menemukan informasi yang spesifik tentang syarat menerbitkan kembali kutipan akta pencatatan sipil yang rusak atau hilang. Namun, berdasarkan pengetahuan internal saya, syarat yang umum digunakan untuk menerbitkan kembali dokumen yang hilang atau rusak adalah:
+
+1. Fotokopi Kartu Keluarga (KK) dan Kartu Tanda Penduduk (KTP)
+2. Asli dan fotokopi kutipan akta pencatatan sipil yang rusak atau hilang
+3. Dokumen autentik pendukung pembetulan akta pencatatan sipil
+
+Namun, perlu diingat bahwa syarat ini dapat berbeda-beda tergantung pada jenis dokumen yang hilang atau rusak. Oleh karena itu, saya sarankan Anda untuk menghubungi Dukcapil DKI Jakarta untuk meminta informasi yang lebih spesifik dan akurat.
+
+Selain itu, Anda juga dapat mengajukan permohonan daring melalui alamat website https://alpukat-dukcapil.jakarta.go.id/.","Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : • Persyaratan No. 5 dan 6 tidak diperlukan, jika biodata penduduk sudah","Surat pernyataan rusak/hilang dari yang bersangkutan atau Surat keterangan kehilangan dari Kepolisian setempat, fotokopi kutipan Akta Pencatatan Sipil yang hilang atau kutipan akta asli yang rusak, serta fotokopi KK dan KTP-el.",0.2,0.6,0.1
+Berapa batas maksimal lembar fotokopi dokumen kependudukan untuk proses legalisasi?,"Selamat datang, Bapak/Ibu. Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya akan memberikan informasi yang akurat dan bermanfaat mengenai syarat layanan dokumen kependudukan.
+
+Untuk pertanyaan Anda tentang batas maksimal lembar fotokopi dokumen kependudukan untuk proses legalisasi, saya tidak menemukan informasi yang spesifik di dalam dokumen yang disediakan. Namun, berdasarkan pengetahuan internal saya, saya dapat memberikan jawaban yang logis dan benar.
+
+Biasanya, untuk proses legalisasi dokumen kependudukan, Dukcapil DKI Jakarta tidak memiliki batas maksimal lembar fotokopi dokumen. Namun, untuk memastikan keakuratan dan keabsahan dokumen, saya sarankan Anda untuk membawa dokumen asli dan fotokopi yang lengkap dan tidak terlalu banyak lembaran.
+
+Jika Anda memiliki pertanyaan lebih lanjut atau memerlukan informasi yang lebih spesifik, silakan bertanya. Saya akan senang membantu Anda.",Dokumen Panduan Standar Pelayanan Kependudukan Dinas Dukcapil DKI Jakarta.,Maksimal 11 lembar fotokopi.,0.0,0.8,1.0
+Melalui situs web apa permohonan daring dokumen administrasi kependudukan dkk Jakarta diajukan?,"Selamat datang, Bapak/Ibu. Saya dapat membantu Anda dengan pertanyaan Anda.
+
+Untuk permohonan daring dokumen administrasi kependudukan di DKI Jakarta, Anda dapat mengajukannya melalui situs web https://alpukat-dukcapil.jakarta.go.id/.",Permohonan daring diajukan melalui : https://s.id/aktawna_dukcapiljkt Permohonan daring diajukan melalui : https://s.id/aktawna_dukcapiljkt Permohonan daring diajukan melalui : https://s.id/kawin_dukcapiljkt Permohonan daring diajukan melalui : https://s.id/kacerwna Permohonan daring diajukan melalui : https://s.id/laporln_dukcapiljkt,Melalui website resmi alpukat-dukcapil.jakarta.go.id.,0.0,0.95,0.0
+Apa syarat pembuatan KTP-el baru bagi pemula yang berusia 17 tahun?,"Selamat datang, Bapak/Ibu! Saya senang membantu Anda dengan informasi tentang syarat pembuatan KTP-el baru.
+
+Untuk pembuatan KTP-el baru bagi pemula yang berusia 17 tahun, syarat-syarat yang harus dipenuhi adalah:
+
+1. Berusia minimal 17 tahun
+2. Membawa fotokopi Kartu Keluarga (KK)
+
+Silakan membawa dokumen-dokumen tersebut ke Loket Dukcapil Kelurahan untuk proses pembuatan KTP-el baru. Jika Anda memiliki pertanyaan lain, silakan bertanya!
+
+Perlu diingat bahwa syarat-syarat di atas berdasarkan informasi yang saya dapatkan dari Dokumen Layanan Publik. Jika Anda memiliki pertanyaan lebih lanjut, silakan hubungi kami untuk klarifikasi lebih lanjut.","Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : • Persyaratan No. 5 dan 6 tidak diperlukan, jika biodata penduduk sudah",Fotokopi Kartu Keluarga (KK).,0.2,0.8,0.1
+Apa syarat penerbitan KTP-el baru bagi pemula di bawah 17 tahun yang sudah menikah?,"Maaf, saya tidak dapat memberikan informasi tentang syarat penerbitan KTP-el baru bagi pemula di bawah 17 tahun yang sudah menikah karena informasi tersebut tidak sesuai dengan aturan utama yang telah ditetapkan.
+
+Namun, saya dapat memberikan informasi tentang syarat penerbitan KTP-el baru bagi warga DKI Jakarta yang berusia minimal 17 tahun atau sudah pernah menikah. Berdasarkan informasi yang tersedia, syarat penerbitan KTP-el baru adalah:
+
+1. Berusia minimal 17 tahun atau sudah pernah menikah
+2. Membawa fotokopi Kartu Keluarga (KK)
+
+Saya harap informasi ini dapat membantu. Jika Anda memiliki pertanyaan lain, silakan bertanya.","Pener bitan KK terdiri dari : Penerbitan KK Baru, Penerbitan KK karena perubahan data, dan Penerbitan KK karena hilang atau rusak. Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan :",KK asli dan fotokopi Surat Nikah/Akta Perkawinan.,0.2,0.4,0.1
+Berapa tarif atau biaya untuk pengurusan pindah datang dan pembuatan KTP-el?,"Selamat datang di layanan Dukcapil DKI Jakarta. Saya senang membantu menjawab pertanyaan Anda tentang tarif atau biaya pengurusan pindah datang dan pembuatan KTP-el.
+
+Menurut informasi yang saya dapatkan, tarif atau biaya untuk pengurusan pindah datang di Dukcapil DKI Jakarta adalah gratis. Anda tidak perlu membayar biaya apapun untuk proses pindah datang.
+
+Namun, perlu diingat bahwa Anda harus membawa dokumen-dokumen yang diperlukan, seperti Surat Keterangan Pindah dari daerah asal, Biodata Penduduk, Surat Pernyataan Jaminan Tempat Tinggal, dan lain-lain, seperti yang tercantum dalam informasi di atas.
+
+Untuk pembuatan KTP-el, Anda dapat mengajukan permohonan daring melalui website alpukat-dukcapil.jakarta.go.id. Biaya pembuatan KTP-el tidak disebutkan dalam informasi yang saya dapatkan, namun biasanya biaya pembuatan KTP-el di Indonesia adalah sekitar Rp 10.000 - Rp 20.000.
+
+Jika Anda memiliki pertanyaan lain atau memerlukan informasi lebih lanjut, silakan bertanya. Saya akan senang membantu.",Dokumen Panduan Standar Pelayanan Kependudukan Dinas Dukcapil DKI Jakarta.,Gratis atau tidak dipungut biaya.,0.8,0.9,0.95
+Apa saja syarat pelaporan pencatatan perubahan akta pencatatan sipil?,"Selamat datang, Bapak/Ibu. Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Berdasarkan informasi yang saya dapatkan dari dokumen yang disediakan, syarat pelaporan pencatatan perubahan akta pencatatan sipil adalah sebagai berikut:
+
+1. Fotokopi KK & KTP
+2. Asli dan Fotokopi Kutipan Akta Pencatatan Sipil
+3. Dokumen Autentik Pendukung Pembetulan Akta Pencatatan Sipil
+
+Silakan menghubungi kami melalui alamat https://alpukat-dukcapil.jakarta.go.id/ untuk mengajukan permohonan daring.","Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : • Persyaratan No. 5 dan 6 tidak diperlukan, jika biodata penduduk sudah","Fotokopi Penetapan Pengadilan Negeri yang telah dilegalisir, Kutipan Akta Asli, Fotokopi KTP & KK DKI Jakarta, Surat Pernyataan Bermeterai Pembaharuan Kutipan Akta, serta Surat Kuasa Bermeterai jika diwakilkan.",0.2,0.8,0.1
+Apa syarat pengurusan surat keterangan belum kawin secara daring?,"Selamat datang, Bapak/Ibu! Saya senang membantu Anda dalam mengurus surat keterangan belum kawin secara daring.
+
+Untuk pengurusan surat keterangan belum kawin secara daring, Anda dapat mengikuti prosedur sebagai berikut:
+
+1. Anda harus memiliki akun di alpukat-dukcapil.jakarta.go.id dan melakukan login.
+2. Anda harus memiliki Kartu Keluarga (KK) dan Kartu Tanda Penduduk (KTP) yang masih aktif.
+3. Anda harus memiliki biodata yang lengkap dan benar.
+4. Anda harus memiliki fotokopi Akta Kelahiran.
+5. Anda harus memiliki fotokopi Akta Perkawinan/Surat Nikah atau akta perceraian (bagi yang belum menikah).
+
+Namun, perlu diingat bahwa syarat No. 5 dan 6 tidak diperlukan jika biodata penduduk sudah terisi lengkap dan benar.
+
+Setelah Anda telah memenuhi syarat-syarat di atas, Anda dapat mengajukan permohonan secara daring melalui alpukat-dukcapil.jakarta.go.id. Saya harap informasi ini dapat membantu Anda dalam mengurus surat keterangan belum kawin secara daring. Jika Anda memiliki pertanyaan lain, silakan bertanya!","Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : • Persyaratan No. 5 dan 6 tidak diperlukan, jika biodata penduduk sudah","Fotokopi Kutipan Akta Kelahiran, Surat Keterangan dari Kelurahan (PM1), asli dan fotokopi KK dan KTP, serta Surat Pernyataan Belum Pernah Menikah Bermeterai.",0.2,0.8,0.1
+Apa saja syarat dokumen untuk pelaporan perjanjian perkawinan?,"Selamat datang! Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya akan membantu menjawab pertanyaan Anda tentang syarat dokumen untuk pelaporan perjanjian perkawinan.
+
+Dalam konteks dokumen yang disediakan, saya tidak menemukan informasi langsung tentang syarat dokumen untuk pelaporan perjanjian perkawinan. Namun, berdasarkan pengetahuan internal saya, syarat dokumen untuk pelaporan perjanjian perkawinan biasanya meliputi:
+
+1. Fotokopi Akta Perkawinan/Surat Nikah
+2. Fotokopi Kartu Keluarga (KK)
+3. Fotokopi KTP Pemohon
+
+Namun, perlu diingat bahwa syarat dokumen dapat berbeda-beda tergantung pada kebutuhan dan kondisi spesifik. Oleh karena itu, saya sarankan Anda untuk menghubungi Dukcapil DKI Jakarta atau mengunjungi situs web resmi mereka untuk mendapatkan informasi yang lebih akurat dan terkini.
+
+Jika Anda memiliki pertanyaan lain atau memerlukan informasi lebih lanjut, silakan bertanya! Saya akan senang membantu.","dokumen imigrasi, Nama orang tua, dan tanda tangan kepala keluarga, Peristiwa Penting/dokumen pendukung perubahan (FC Surat Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan :","Fotokopi KK & KTP DKI Jakarta suami & istri, fotokopi ITAP/ITAS dan Paspor bagi orang asing, asli dan fotokopi Kutipan Akta Perkawinan, asli dan fotokopi Perjanjian Perkawinan dari Notaris yang dilegalisir, Surat Pernyataan Kedua Pasangan bermeterai, serta Surat Kuasa bermeterai jika diwakilkan.",0.2,0.6,0.1
+Apa persyaratan untuk melakukan legalisasi dokumen kependudukan yang belum digital?,"Selamat datang, Bapak/Ibu. Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya dengan senang hati membantu menjawab pertanyaan Anda tentang persyaratan legalisasi dokumen kependudukan yang belum digital.
+
+Dalam konteks ini, saya akan mengacu pada informasi yang tersedia di Dokumen Layanan Publik. Berdasarkan informasi tersebut, persyaratan untuk melakukan legalisasi dokumen kependudukan yang belum digital adalah sebagai berikut:
+
+1. Fotokopi Kartu Keluarga (KK) dan Kartu Tanda Penduduk (KTP)
+2. Asli dan Fotokopi Kutipan Akta Pencatatan Sipil
+3. Dokumen Autentik Pendukung Pembetulan Akta Pencatatan Sipil
+
+Namun, perlu diingat bahwa jika Anda ingin melakukan legalisasi dokumen kependudukan yang belum digital, Anda juga perlu memenuhi syarat lainnya, seperti:
+
+* Biodata Penduduk yang lengkap dan benar
+* Surat Keterangan Pindah dari daerah asal (jika Anda ingin melakukan pindah datang)
+* Surat Pernyataan Jaminan Tempat Tinggal dari Pemilik Rumah/Pengelola Rusun/Pengelola Apartemen (jika Anda menumpang)
+* KK dan KTP Penjamin (jika Anda menumpang)
+
+Saya harap informasi ini dapat membantu Anda, Bapak/Ibu. Jika Anda memiliki pertanyaan lain, silakan bertanya.",Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : untuk mengemban amanah sebagai Kepala Dinas Kependudukan dan,Fotokopi dokumen kependudukan yang akan dilegalisasi.,0.2,0.6,0.1
+Apa saja syarat pelaporan pencatatan pembetulan akta pencatatan sipil?,"Selamat datang di layanan Dukcapil DKI Jakarta. Saya dengan senang hati membantu menjawab pertanyaan Anda tentang syarat pelaporan pencatatan pembetulan akta pencatatan sipil.
+
+Dalam konteks dokumen yang disediakan, syarat pelaporan pencatatan pembetulan akta pencatatan sipil adalah sebagai berikut:
+
+1. Fotokopi Kartu Keluarga (KK) dan Kartu Tanda Penduduk (KTP)
+2. Asli dan fotokopi kutipan akta pencatatan sipil
+3. Dokumen autentik pendukung pembetulan akta pencatatan sipil
+
+Silakan menghubungi kami melalui alamat https://alpukat-dukcapil.jakarta.go.id/ untuk mengajukan permohonan daring.","Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : Persyaratan Pelayanan : • Persyaratan No. 5 dan 6 tidak diperlukan, jika biodata penduduk sudah","Fotokopi KK & KTP, asli dan fotokopi Kutipan Akta Pencatatan Sipil, serta Dokumen Autentik Pendukung Pembetulan Akta Pencatatan Sipil.",0.2,0.8,0.1
+Berapa jangka waktu maksimal pembuatan atau penerbitan KTP-el baru sejak syarat terpenuhi?,"Selamat datang, Bapak/Ibu. Saya adalah Virtual Assistant resmi Dukcapil DKI Jakarta. Saya akan memberikan informasi yang akurat dan bermanfaat mengenai syarat layanan dokumen kependudukan.
+
+Untuk pertanyaan Anda tentang jangka waktu maksimal pembuatan atau penerbitan KTP-el baru sejak syarat terpenuhi, saya dapat memberikan jawaban sebagai berikut:
+
+Menurut informasi yang saya dapatkan, proses pembuatan KTP-el baru melibatkan beberapa tahapan, termasuk verifikasi berkas, pengajuan proses, dan pengantaran Surat Keterangan Pindah Datang. Namun, saya tidak menemukan informasi yang spesifik tentang jangka waktu maksimal pembuatan atau penerbitan KTP-el baru.
+
+Namun, berdasarkan pengetahuan internal saya, saya dapat memberikan jawaban yang logis dan benar. Jangka waktu maksimal pembuatan atau penerbitan KTP-el baru biasanya tidak lebih dari 3 hari kerja setelah syarat terpenuhi. Namun, ini dapat berbeda-beda tergantung pada kondisi dan kebutuhan yang spesifik.
+
+Untuk informasi yang lebih akurat, saya sarankan Anda untuk menghubungi Dukcapil DKI Jakarta secara langsung atau mengunjungi situs web resmi mereka untuk mendapatkan informasi yang lebih lengkap dan terbaru.",Dokumen Panduan Standar Pelayanan Kependudukan Dinas Dukcapil DKI Jakarta.,Selambat-lambatnya 14 hari.,0.2,0.6,0.8
+Apa syarat pencatatan kelahiran bagi penduduk orang asing?,"Maaf, saya tidak menemukan informasi tentang syarat pencatatan kelahiran bagi penduduk orang asing dalam dokumen yang disediakan. Namun, berdasarkan pengetahuan internal saya, syarat pencatatan kelahiran bagi penduduk orang asing biasanya meliputi:
+
+1. Fotokopi paspor atau dokumen identitas lainnya yang sah
+2. Fotokopi Akta Kelahiran yang telah dilegalisir oleh Kedutaan Besar atau Perwakilan Republik Indonesia di negara asal
+3. Dokumen autentik pendukung lainnya, seperti surat keterangan dari Kedutaan Besar atau Perwakilan Republik Indonesia di negara asal
+
+Namun, perlu diingat bahwa syarat-syarat ini dapat berbeda-beda tergantung pada kebijakan dan regulasi yang berlaku di DKI Jakarta. Oleh karena itu, saya sarankan Anda untuk menghubungi Dukcapil DKI Jakarta atau mengunjungi situs web resmi mereka untuk mendapatkan informasi yang lebih akurat dan terkini.","Kewarganegaraan, pembetulan Akta Pencatatan Sipil, dan pembatalan Akta Pencatatan Sipil. Persyaratan dan proses penerbitan KK bersamaan dengan penerbitan 1. Standar Pelayanan Pencatatan Kelahir an WNI Ter integr asi Persyaratan Pelayanan : 2. Standar Pelayanan Pencatatan Kematian WNI Ter integr asi Persyaratan Pelayanan :","Surat Keterangan Peristiwa Kelahiran dari Dokter/RS, fotokopi Akta Perkawinan Orang Tua (terjemahan jika bahasa asing), fotokopi Identitas Orang Tua (KTP/KK/VISA/SKTT/ITAP), Dokumen Perjalanan/Paspor, serta Identitas 2 Orang Saksi.",0.2,0.6,0.4
