@@ -11,7 +11,7 @@ st.set_page_config(
 
 apply_custom_css()
 
-BACKEND_API_URL = "http://127.0.0.1:8000/chat"
+BACKEND_API_URL = "https://unbounded-shush-widen.ngrok-free.dev/chat"
 
 st.markdown("""
 <style>
