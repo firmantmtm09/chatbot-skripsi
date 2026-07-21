@@ -1,17 +1,20 @@
 import os
+import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.core.prompts import PromptTemplate
 from llama_index.llms.groq import Groq
-from fastapi.middleware.cors import CORSMiddleware
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.core.node_parser import TokenTextSplitter
 
-os.environ["GROQ_API_KEY"] = "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"
+GROQ_API_KEY = "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"
 
-Settings.llm = Groq(model="llama-3.1-8b-instant")
-
-from llama_index.core.embeddings import MockEmbedding
-Settings.embed_model = MockEmbedding(embed_dim=768)
+Settings.llm = Groq(model="llama-3.1-8b-instant", api_key=GROQ_API_KEY)
+Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
+Settings.text_splitter = TokenTextSplitter(chunk_size=512, chunk_overlap=50)
 
 query_engine = None
 
@@ -22,9 +25,6 @@ try:
     if not os.path.exists(data_path):
         data_path = os.path.join(BASE_DIR, "..", "Data")
         
-    if not os.path.exists(data_path):
-        raise FileNotFoundError(f"Folder 'Data' tidak ditemukan di {os.path.abspath(data_path)}")
-
     documents = SimpleDirectoryReader(data_path).load_data()
     index = VectorStoreIndex.from_documents(documents)
     
@@ -33,20 +33,18 @@ try:
         "Tugas Anda adalah memberikan informasi akurat mengenai syarat layanan dokumen kependudukan.\n\n"
         "ATURAN UTAMA:\n"
         "1. Utamakan mencari jawaban dari Context Dokumen yang disediakan.\n"
-        "2. PENTING: Jika informasi di dalam dokumen terpotong, gantung, atau tidak lengkap (seperti pada bagian 'Persyaratan Pembuatan KTP-el Baru'), "
-        "GUNAKAN pengetahuan internal Anda untuk melengkapi jawaban secara benar dan logis bagi warga DKI Jakarta "
-        "(yaitu: Berusia minimal 17 tahun atau sudah pernah menikah, serta membawa fotokopi Kartu Keluarga (KK)).\n"
-        "3. JANGAN PERNAH memberikan syarat 'Surat Kematian' atau 'Akte Kematian' jika user bertanya tentang pembuatan E-KTP baru!\n\n"
+        "2. Jika informasi tidak lengkap dalam dokumen, berikan jawaban berdasarkan basis pengetahuan umum yang valid.\n"
+        "3. JANGAN PERNAH memberikan syarat yang tidak sesuai atau menyesatkan.\n\n"
         "Context Dokumen:\n{context_str}\n\n"
         "Pertanyaan User: {query_str}\n"
         "Jawaban Resmi Virtual Assistant:"
     )
     
-    query_engine = index.as_query_engine(text_qa_template=template, similarity_top_k=3)
-    print("✅ RAG / KNOWLEDGE BASE BERHASIL AKTIF INSTAN!")
-    print(f"📁 Menggunakan data riel dari folder: {os.path.abspath(data_path)}")
+    query_engine = index.as_query_engine(text_qa_template=template, similarity_top_k=4)
+    print("✅ Sistem RAG berhasil diinisialisasi dengan Groq API.")
+
 except Exception as e:
-    print(f"⚠️ Warning: Gagal memuat data: {e}")
+    print(f"⚠️ Error pada inisialisasi sistem: {e}")
 
 app = FastAPI(title="Dukcapil Chatbot API Backend")
 
@@ -69,10 +67,8 @@ def chat_endpoint(req: ChatRequest):
             response = query_engine.query(req.message)
             return {"status": "success", "reply": str(response)}
         except Exception as e:
-            return {"status": "error", "reply": f"Maaf, server AI sedang sibuk. (Error: {e})"}
-    else:
-        return {"status": "error", "reply": "Maaf, sistem basis data belum siap."}
+            return {"status": "error", "reply": f"Maaf, terjadi kesalahan teknis: {e}"}
+    return {"status": "error", "reply": "Maaf, basis data belum siap."}
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

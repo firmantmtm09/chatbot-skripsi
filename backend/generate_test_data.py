@@ -6,12 +6,13 @@ import requests
 import time  
 
 print("==================================================")
-print("PROSES GENERATE DATA JAWABAN CHATBOT DUKCAPIL (FIXED PDF)...")
+print("PROSES GENERATE DATA EVALUASI RAGAS (REAL-WORLD)...")
 print("==================================================")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(BASE_DIR)
 
+# Daftar pertanyaan dan ground truth tetap digunakan untuk pengujian empiris
 questions = [
     "Apa syarat penerbitan kembali KK karena rusak atau hilang?",
     "Apa saja persyaratan dokumen untuk melakukan pindah datang ke DKI Jakarta?",
@@ -58,66 +59,39 @@ ground_truths = [
     "Surat Keterangan Peristiwa Kelahiran dari Dokter/RS, fotokopi Akta Perkawinan Orang Tua (terjemahan jika bahasa asing), fotokopi Identitas Orang Tua (KTP/KK/VISA/SKTT/ITAP), Dokumen Perjalanan/Paspor, serta Identitas 2 Orang Saksi."
 ]
 
-pdf_path = os.path.join(BASE_DIR, "Data", "Dokumen_LayananPublik.pdf")
-if not os.path.exists(pdf_path):
-    pdf_path = os.path.join(BASE_DIR, "..", "Data", "Dokumen_LayananPublik.pdf")
-
-paragraphs = []
-if os.path.exists(pdf_path):
-    try:
-        from pypdf import PdfReader
-        reader = PdfReader(pdf_path)
-        full_text = ""
-        for page in reader.pages:
-            text = page.extract_text()
-            if text:
-                full_text += text + "\n"
-        paragraphs = [p.strip() for p in full_text.split("\n") if len(p.strip()) > 20]
-    except Exception as e:
-        print(f"⚠️ Gagal membaca PDF: {e}")
-
 API_URL = "http://127.0.0.1:8000/chat"
 test_data = []
 
-print("Memulai pengambilan jawaban baru dari local API...")
+print("Memulai pengambilan jawaban dari model melalui API...")
 for i, (question, ground_truth) in enumerate(zip(questions, ground_truths), start=1):
     try:
         response = requests.post(API_URL, json={"message": question}, timeout=60)
         answer = response.json().get("reply", "Tidak ada balasan.") if response.status_code == 200 else "Error API"
         
-        matched_context = ""
-        keywords = [w for w in question.split() if len(w) > 4]
-        for p in paragraphs:
-            if any(k.lower() in p.lower() for k in keywords[:2]):
-                matched_context += p + " "
-                if len(matched_context) > 300:
-                    break
-        
-        if not matched_context:
-            matched_context = "Dokumen Panduan Standar Pelayanan Kependudukan Dinas Dukcapil DKI Jakarta."
-
+        # Simpan ke list data
         test_data.append({
             "question": question,
             "answer": answer.replace('"', "'"), 
-            "contexts": matched_context.strip().replace('"', "'"),
             "ground_truth": ground_truth
         })
-        print(f"-> Berhasil memproses baris [{i}/{len(questions)}]")
-        time.sleep(1)
+        print(f"-> Selesai memproses baris [{i}/{len(questions)}]")
+        time.sleep(0.5) # Jeda agar tidak membebani API
     except Exception as e:
-        test_data.append({"question": question, "answer": "Error", "contexts": "Error", "ground_truth": ground_truth})
+        print(f"Error pada baris {i}: {e}")
 
+# Simpan hasil ke CSV
 df = pd.DataFrame(test_data)
 output_file = os.path.join(BASE_DIR, "evaluasi_ragas_final.csv")
 df.to_csv(output_file, index=False)
 
 print("\n=======================================")
-print("FILE CSV BERHASIL DIPERBARUI SECARA BERSIH!")
+print(f"FILE CSV BERHASIL DISIMPAN: {output_file}")
 print("=======================================")
 
-print("\n>>> Menjalankan proses perhitungan metrik...")
+# Menjalankan script evaluasi Ragas
 try:
     eval_script = os.path.join(BASE_DIR, "evaluasi_ragas.py")
+    print("Menjalankan perhitungan metrik Ragas...")
     subprocess.run(["python3", eval_script], check=True)
 except Exception as e:
-    print(f"Pemicuan evaluasi otomatis: {e}")
+    print(f"Gagal menjalankan evaluasi otomatis: {e}")

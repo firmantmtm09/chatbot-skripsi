@@ -7,7 +7,7 @@ from openpyxl.utils import get_column_letter
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(BASE_DIR, "evaluasi_ragas_final.csv")
-excel_path = os.path.join(BASE_DIR, "evaluasi_ragas_final.xlsx")
+excel_path = os.path.join(BASE_DIR, "rekap_evaluasi_ragas.xlsx")
 
 if not os.path.exists(csv_path):
     print(f"⚠️ Error: File '{csv_path}' tidak ditemukan! Jalankan evaluasi terlebih dahulu.")
@@ -66,12 +66,7 @@ for col_idx, header in enumerate(headers, 1):
     cell.fill = PatternFill(start_color="2F5597", end_color="2F5597", fill_type="solid")
     cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
 
-thin_border = Border(
-    left=Side(style='thin', color='D9D9D9'),
-    right=Side(style='thin', color='D9D9D9'),
-    top=Side(style='thin', color='D9D9D9'),
-    bottom=Side(style='thin', color='D9D9D9')
-)
+thin_border = Border(left=Side(style='thin', color='D9D9D9'), right=Side(style='thin', color='D9D9D9'), top=Side(style='thin', color='D9D9D9'), bottom=Side(style='thin', color='D9D9D9'))
 
 for r_idx, row in df.iterrows():
     actual_row = r_idx + 2
@@ -114,13 +109,14 @@ ws_data.row_dimensions[1].height = 28
 for r in range(2, avg_row_idx + 1):
     ws_data.row_dimensions[r].height = 24
 
-color_scale = ColorScaleRule(start_type='num', start_value=0.0, start_color='FCE4D6',  
-                             mid_type='num', mid_value=0.5, mid_color='FFF2CC',    
-                             end_type='num', end_value=1.0, end_color='E2EFDA')    
+color_scale = ColorScaleRule(start_type='num', start_value=0.0, start_color='FCE4D6', mid_type='num', mid_value=0.5, mid_color='FFF2CC', end_type='num', end_value=1.0, end_color='E2EFDA')
 ws_data.conditional_formatting.add(f"E2:G{avg_row_idx-1}", color_scale)
 
-wb.save(excel_path)
-print("==================================================")
-print("BERHASIL MENGONVERSI DATA KE EXCEL!")
-print(f"Laporan rapi disimpan di: {excel_path}")
-print("==================================================")
+try:
+    wb.save(excel_path)
+    print("==================================================")
+    print("BERHASIL MENGONVERSI DATA KE EXCEL!")
+    print(f"Laporan rapi disimpan di: {excel_path}")
+    print("==================================================")
+except PermissionError:
+    print("⚠️ Gagal menyimpan! Pastikan file 'rekap_evaluasi_ragas.xlsx' sedang ditutup.")

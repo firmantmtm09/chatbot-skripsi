@@ -1,5 +1,10 @@
-# UI Framework
+# UI Framework (Frontend)
 streamlit
+requests
+
+# Backend API Engine
+fastapi
+uvicorn
 
 # LlamaIndex Core & Plugins
 llama-index-core
@@ -7,12 +12,17 @@ llama-index-llms-groq
 llama-index-embeddings-huggingface
 llama-index-readers-file
 
-# Pemrosesan Bahasa (NER Skripsi)
-spacy
+# Data Processing & Excel Support
+pandas
+openpyxl
+pypdf
 
-# Dependencies Pendukung
-transformers==4.44.2
+# Evaluation Framework
+ragas
+
+# Dependencies Pendukung & Handler Model
+transformers===4.44.2
+torch
 h5py
 rich
-tf-keras
 watchdog
