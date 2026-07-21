@@ -12,7 +12,6 @@ print("==================================================")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(BASE_DIR)
 
-# Daftar pertanyaan dan ground truth tetap digunakan untuk pengujian empiris
 questions = [
     "Apa syarat penerbitan kembali KK karena rusak atau hilang?",
     "Apa saja persyaratan dokumen untuk melakukan pindah datang ke DKI Jakarta?",
@@ -68,18 +67,16 @@ for i, (question, ground_truth) in enumerate(zip(questions, ground_truths), star
         response = requests.post(API_URL, json={"message": question}, timeout=60)
         answer = response.json().get("reply", "Tidak ada balasan.") if response.status_code == 200 else "Error API"
         
-        # Simpan ke list data
         test_data.append({
             "question": question,
             "answer": answer.replace('"', "'"), 
             "ground_truth": ground_truth
         })
         print(f"-> Selesai memproses baris [{i}/{len(questions)}]")
-        time.sleep(0.5) # Jeda agar tidak membebani API
+        time.sleep(0.5) 
     except Exception as e:
         print(f"Error pada baris {i}: {e}")
 
-# Simpan hasil ke CSV
 df = pd.DataFrame(test_data)
 output_file = os.path.join(BASE_DIR, "evaluasi_ragas_final.csv")
 df.to_csv(output_file, index=False)
@@ -88,7 +85,6 @@ print("\n=======================================")
 print(f"FILE CSV BERHASIL DISIMPAN: {output_file}")
 print("=======================================")
 
-# Menjalankan script evaluasi Ragas
 try:
     eval_script = os.path.join(BASE_DIR, "evaluasi_ragas.py")
     print("Menjalankan perhitungan metrik Ragas...")
