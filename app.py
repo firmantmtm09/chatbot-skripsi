@@ -9,7 +9,6 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core.node_parser import TokenTextSplitter
 from llama_index.llms.groq import Groq
 
-# Konfigurasi halaman Streamlit
 st.set_page_config(
     page_title="Portal Resmi Dukcapil DKI Jakarta",
     page_icon="🏛️",
@@ -18,13 +17,13 @@ st.set_page_config(
 
 apply_custom_css()
 
-# Memuat environment variables lokal (jika ada)
 load_dotenv()
 
-# Mengambil API Key dari Streamlit Secrets (untuk cloud) atau .env (untuk lokal)
-GROQ_API_KEY = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
+try:
+    GROQ_API_KEY = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
+except Exception:
+    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-# Inisialisasi RAG LlamaIndex & Groq (Dicache agar tidak memuat ulang terus menerus)
 @st.cache_resource
 def init_rag_system():
     try:
