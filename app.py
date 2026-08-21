@@ -51,7 +51,7 @@ def get_query_engine():
         "Jawablah pertanyaan berdasarkan informasi yang ada di dalam context. "
         "Jika informasi tidak ditemukan secara tersurat, cobalah cari makna yang paling mendekati. "
         "Jangan mengurangi atau mengubah angka, syarat, atau ketentuan spesifik yang ada di dalam dokumen. "
-        "Gunakan format bullet points dan awali dengan sapaan ramah.\n\n"
+        "Gunakan format bullet points dan awali dengan sapaan ramah, lalu akhiri dengan penutup yang ramah.\n\n"
         "Context:\n{context_str}\n\n"
         "Pertanyaan: {query_str}\n"
         "Jawaban:"
@@ -60,6 +60,8 @@ def get_query_engine():
     template = PromptTemplate(system_prompt)
     query_engine = index.as_query_engine(text_qa_template=template, similarity_top_k=8)
     print("Sistem RAG berhasil diinisialisasi dengan Groq API.")
+    
+    return query_engine
 
 # Inisialisasi Query Engine
 try:
