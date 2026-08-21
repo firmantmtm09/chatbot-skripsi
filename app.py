@@ -249,7 +249,7 @@ with col_portal_kiri:
         elif sub_menu_profil == "Struktur Organisasi":
             st.markdown("#### 🏢 Struktur Organisasi")
             try:
-                st.image("assets/struktur_organisasi.jpeg", caption="Bagan Organisasi Disdukcapil DKI Jakarta", use_container_width=True)
+                st.image("assets/struktur_organisasi.jpeg", caption="Bagan Organisasi Disdukcapil DKI Jakarta", width='stretch')
             except Exception as e:
                 st.error(f"Gagal memuat gambar struktur organisasi: {e}")
         elif sub_menu_profil == "Profil Kepala Dinas":
@@ -257,7 +257,7 @@ with col_portal_kiri:
             col_foto, col_biodata = st.columns([0.3, 0.7], gap="large")
             with col_foto:
                 try:
-                    st.image("assets/kepala_dinas.jpeg", caption="DENNY WAHYU HARYANTO", use_container_width=True)
+                    st.image("assets/kepala_dinas.jpeg", caption="DENNY WAHYU HARYANTO", width='stretch')
                 except Exception as e:
                     st.error(f"Gagal memuat gambar kepala dinas: {e}")
             with col_biodata:
