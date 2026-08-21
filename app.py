@@ -58,7 +58,8 @@ def get_query_engine():
     )
     
     template = PromptTemplate(system_prompt)
-    return index.as_query_engine(text_qa_template=template, similarity_top_k=8)
+    query_engine = index.as_query_engine(text_qa_template=template, similarity_top_k=8)
+    print("Sistem RAG berhasil diinisialisasi dengan Groq API.")
 
 # Inisialisasi Query Engine
 try:
