@@ -1,13 +1,7 @@
 import os
+import requests
 import streamlit as st
 from frontend.styles import apply_custom_css, render_hero_section
-from dotenv import load_dotenv
-
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
-from llama_index.core.prompts import PromptTemplate
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from llama_index.core.node_parser import TokenTextSplitter
-from llama_index.llms.groq import Groq
 
 st.set_page_config(
     page_title="Portal Resmi Dukcapil DKI Jakarta",
@@ -17,50 +11,7 @@ st.set_page_config(
 
 apply_custom_css()
 
-load_dotenv()
-
-try:
-    GROQ_API_KEY = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
-except Exception:
-    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-
-@st.cache_resource
-def init_rag_system():
-    try:
-        llm = Groq(model="openai/gpt-oss-20b", api_key=GROQ_API_KEY, temperature=0, max_tokens=1500)
-        Settings.llm = llm
-        Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
-        Settings.text_splitter = TokenTextSplitter(chunk_size=300, chunk_overlap=30)
-
-        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        data_path = os.path.abspath(os.path.join(BASE_DIR, "Data"))
-        
-        if not os.path.exists(data_path):
-            data_path = os.path.join(BASE_DIR, "Data")
-            
-        print(f"Memuat dokumen dari direktori: {data_path}")
-        documents = SimpleDirectoryReader(data_path).load_data()
-        index = VectorStoreIndex.from_documents(documents)
-        
-        system_prompt = (
-            "Kamu adalah asisten virtual resmi Dukcapil DKI Jakarta. "
-            "Jawablah pertanyaan berdasarkan informasi yang akurat dari context yang diberikan. "
-            "Jangan mengurangi atau mengubah angka, syarat, atau ketentuan spesifik yang ada di dalam dokumen. "
-            "Gunakan format bullet points dan awali dengan sapaan ramah.\n\n"
-            "Context:\n{context_str}\n\n"
-            "Pertanyaan: {query_str}\n"
-            "Jawaban:"
-        )
-        
-        template = PromptTemplate(system_prompt)
-        engine = index.as_query_engine(text_qa_template=template, similarity_top_k=6)
-        print("Sistem RAG berhasil diinisialisasi.")
-        return engine
-    except Exception as e:
-        print(f"Error inisialisasi sistem: {e}")
-        return None
-
-query_engine = init_rag_system()
+BACKEND_URL = "http://127.0.0.1:8000/chat"
 
 st.markdown("""
 <style>
@@ -209,10 +160,34 @@ with col_portal_kiri:
         st.markdown("<br>", unsafe_allow_html=True)
 
         if sub_menu_profil == "Tugas dan Fungsi":
-            st.markdown("#### 🎯 Kedudukan, Tugas, and Fungsi")
+            st.markdown("#### 🎯 Kedudukan, Tugas, dan Fungsi")
             st.write("""
-            Berdasarkan **Peraturan Gubernur Provinsi Daerah Khusus Ibukota Jakarta Nomor 57 Tahun 2022** tentang Organisasi Dan Tata Kerja Perangkat Daerah mempunyai tugas menyelenggarakan urusan pemerintahan bidang administrasi kependudukan dan pencatatan sipil.
-            """)
+            Berdasarkan Peraturan Gubernur Provinsi Daerah Khusus Ibukota Jakarta Nomor 57 Tahun 2022 tentang Organisasi Dan Tata Kerja Perangkat Daerah mempunyai tugas menyelenggarakan urusan pemerintahan bidang administrasi kependudukan dan pencatatan sipil.
+
+            Untuk melaksanakan tugas sebagaimana dimaksud, Disdukcapil menyelenggarakan fungsi :
+
+            1. penyusunan Rencana Strategis, Rencana Kerja, dan Rencana dan Anggaran Dinas Kependudukan dan Pencatatan Sipil
+            2. pelaksanaan Rencana Strategis dan Dokumen Pelaksanaan Anggaran Dinas Kependudukan dan Pencatatan Sipil
+            3. perumusan dan pelaksanaan kebijakan, proses bisnis, standar, dan prosedur Dinas Kependudukan dan Pencatatan Sipil
+            4. perumusan, pengoordinasian dan pelaksanaan kebijakan urusan pemerintahan di bidang administrasi kependudukan dan pencatatan sipil
+            5. pemantauan dan evaluasi pelaksanaan urusan pemerintahan di bidang kependudukan dan pencatatan sipil
+            6. pembinaan, pengawasan dan pengendalian urusan pemerintahan di bidang kependudukan dan pencatatan sipil
+            7. pelaksanaan kerja sama dan koordinasi dengan PD/UKPD dan/atau instansi pemerintah/swasta/organisasi dalam pelaksanaan urusan pemerintahan di bidang kependudukan dan pencatatan sipil
+            8. pengelolaan data dan informasi serta transformasi digital di bidang kependudukan dan pencatatan sipil
+            9. pelaksanaan pelayanan pendaftaran penduduk dan pencatatan sipil
+            10. pengawasan dan penindakan sesuai dengan ketentuan peraturan perundang-undangan di bidang kependudukan dan pencatatan sipil
+            11. penyelesaian permasalahan administrasi kependudukan
+            12. pemutakhiran data penduduk dalam pelaksanaan pemilihan umum
+            13. pembinaan dan pengembangan peran serta masyarakat dalam administrasi kependudukan
+            14. penyusunan profil kependudukan
+            15. pembinaan dan pengembangan tenaga fungsional kependudukan dan pencatatan sipil
+            16. pelaksanaan kesekretariatan Dinas Kependudukan dan Pencatatan Sipil
+            17. pelaksanaan penyediaan dan pengelolaan prasarana dan sarana di bidang kependudukan dan pencatatan sipil
+            18. pemberian dukungan teknis kepada masyarakat dan perangkat daerah di bidang administrasi kependudukan dan pencatatan sipil
+            19. penegakan peraturan perundang-undangan daerah di bidang administrasi kependudukan dan pencatatan sipil
+            20. pelaksanaan koordinasi, pemantauan, evaluasi, pelaporan dan pertanggungjawaban pelaksanaan tugas dan fungsi Dinas Kependudukan dan Pencatatan Sipil dan
+            21. pelaksanaan tugas dan fungsi kedinasan lain yang diberikan oleh Gubernur dan/atau Sekretaris Daerah.
+        """)
         elif sub_menu_profil == "Struktur Organisasi":
             st.markdown("#### 🏢 Struktur Organisasi")
             try:
@@ -230,28 +205,216 @@ with col_portal_kiri:
             with col_biodata:
                 st.markdown("##### **DENNY WAHYU HARYANTO**")
                 st.write("Kepala Dinas Kependudukan dan Pencatatan Sipil Provinsi DKI Jakarta.")
+
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.write("""
+            **Denny Wahyu Haryanto** merupakan sosok birokrat berpengalaman yang telah mengabdi dalam pemerintahan selama lebih dari tiga dekade. Beliau memiliki rekam jejak yang luas di berbagai bidang administrasi dan pelayanan publik, khususnya di lingkungan Pemerintah Provinsi DKI Jakarta.
+            """)
+            
+            st.markdown("##### 🎓 Pendidikan Formal")
+            st.markdown("""
+            * **Diploma III** — Sekolah Tinggi Pemerintahan Dalam Negeri (STPDN), 1993.
+            * **Sarjana Ilmu Pemerintahan (S.IP)** — Institut Ilmu Pemerintahan Jakarta, 1998.
+            * **Magister Ilmu Pemerintahan (M.Si)** — Universitas Satyagama, 2007.
+            """)
+
+            st.markdown("##### 🏅 Pendidikan & Pelatihan Kepemimpinan")
+            st.markdown("""
+            * Diklat Administrasi Umum (1999)
+            * Pendidikan dan Pelatihan Kepemimpinan Tingkat III (2005)
+            * Pelatihan Kepemimpinan Nasional Tingkat II (2024)
+            """)
+
+            st.markdown("##### 💼 Riwayat Jabatan & Pengalaman Karier")
+            st.markdown("""
+            * Staf Urusan Pemerintahan di Kecamatan Tanjung Priok, Jakarta Utara (1993)
+            * Sekretaris Wilayah Kecamatan Kepulauan Seribu, Jakarta Utara (1999)
+            * Wakil Camat Kepulauan Seribu Selatan (2001)
+            * Camat Kepulauan Seribu Selatan (2003)
+            * Camat Pasar Rebo, Jakarta Timur (2007)
+            * Kepala Badan Kesatuan Bangsa Kotamadya Jakarta Timur (2008)
+            * Kepala Kantor Kesbangpol Kota Administrasi Jakarta Timur (2009)
+            * Kepala Bidang Kewaspadaan, Badan Kesatuan Bangsa dan Politik Provinsi DKI Jakarta (2011)
+            * Asisten Pemerintahan Sekretariat Kota Administrasi Jakarta Barat (2012)
+            * Kepala Biro Organisasi dan Tatalaksana Setda Provinsi DKI Jakarta (2014)
+            * Kepala Badan Penanggulangan Bencana Daerah Provinsi DKI Jakarta (2015)
+            * Kepala Biro Administrasi Setda Provinsi DKI Jakarta (2017)
+            * Wakil Kepala Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Provinsi DKI Jakarta (2017)
+            * **Kepala Dinas Kependudukan dan Pencatatan Sipil Provinsi DKI Jakarta (2025 – Sekarang)**
+            """)
+
+            st.write("""
+            Dengan pengalaman yang komprehensif di bidang pemerintahan, administrasi, dan pelayanan publik, beliau berkomitmen penuh untuk mewujudkan pelayanan administrasi kependudukan yang profesional, transparan, dan akuntabel bagi seluruh warga Jakarta.
+            """)
         elif sub_menu_profil == "Profil Pejabat":
             st.markdown("#### 👥 Profil Pejabat Struktural")
-            st.write("Daftar Pemangku Jabatan Struktural Dinas Kependudukan dan Pencatatan Sipil Provinsi DKI Jakarta.")
+            st.write("Daftar Pemangku Jabatan Struktural di Lingkungan Dinas Kependudukan dan Pencatatan Sipil Provinsi DKI Jakarta:")
+            
+            st.markdown("<br>", unsafe_allow_html=True)
+            
+            pejabat_list = [
+                {"jabatan": "Kepala Dinas Kependudukan dan Pencatatan Sipil", "nama": "Drs. Denny Wahyu Haryanto, M.Si"},
+                {"jabatan": "Sekretaris Dinas Kependudukan dan Pencatatan Sipil", "nama": "Muhammad Nurrahman, S.Kom, MM"},
+                {"jabatan": "Kepala Bidang Pendaftaran Penduduk", "nama": "Shanti, S.Sos, MA"},
+                {"jabatan": "Kepala Bidang Pencatatan Sipil", "nama": "Witri Yenny, S.Sos, M.Si"},
+                {"jabatan": "Kepala Bidang Data dan Informasi", "nama": "Firman, ST"},
+                {"jabatan": "Kepala Bidang Pembinaan, Pengawasan dan Pengendalian Adminduk", "nama": "Sudirman, SH"},
+                {"jabatan": "Kepala Unit", "nama": "Desmond, S.Si, MM"},
+                {"jabatan": "Kepala Unit Pengelola Teknologi Informasi Kependudukan", "nama": "Hari Wibowo, MAP"}
+            ]
+            
+            for p in pejabat_list:
+                st.markdown(f"""
+                <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 14px 18px; border-radius: 12px; margin-bottom: 10px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #475569; text-transform: uppercase; letter-spacing: 0.5px;">{p['jabatan']}</div>
+                    <div style="font-size: 16px; font-weight: 700; color: #1E293B; margin-top: 4px;">{p['nama']}</div>
+                </div>
+                """, unsafe_allow_html=True)
         elif sub_menu_profil == "Sejarah":
-            st.markdown("#### 📜 Sejarah Singkat")
-            st.write("Sejarah perkembangan layanan Dukcapil dari masa kolonial hingga era digital.")
+            st.markdown("#### 📜 Sejarah Singkat Dinas Dukcapil")
+            
+            st.markdown("##### **Latar Belakang Dinas Dukcapil**")
+            st.write("""
+            Pada awal abad XIX, kota Batavia (Jakarta) mengalami perkembangan dan perubahan yang pesat terutama di bidang pemerintahan. Batavia merupakan kota yang menjadi pusat pemerintahan dan perdagangan pada masa kolonial Belanda. Dengan dibangunnya infrastruktur seperti pusat ibadah, gedung kesenian, kantor pos, gedung mahkamah agung, Lapangan Banteng, hingga Lapangan Monas, mengindikasikan Batavia akan menjadi ibu kota. 
+            
+            Seiring dengan pembangunannya, kebutuhan penyelenggaraan tertib administrasi kependudukan dan pencatatan sipil (*Burgerlijk Stand*) sudah mulai terorganisir, dibuktikan dengan dokumen akta pencatatan sipil bertahun 1829. Penyelenggaraannya mengacu pada peraturan perundang-undangan Belanda (asas konkordansi) yang hanya berlaku bagi warga Belanda, Eropa, dan Amerika.
+            """)
+
+            st.markdown("##### **Perkembangan Ordonansi Pencatatan Sipil**")
+            st.write("""
+            Ordonansi pencatatan sipil yang pertama dibuat untuk daerah Hindia Belanda diberlakukan pada tahun 1850 dengan ditetapkannya Ordonantie Catatan Sipil bagi Golongan Eropa di Hindia Belanda, yaitu *Reglement* tentang daftar-daftar pencatatan sipil bagi bangsa Eropa, Indonesia Asli (Bumi Putera), dan mereka yang dipersamakan dengan bangsa Eropa (yaitu mereka yang menundukkan diri secara sukarela kepada hukum sipil/perdata dan hukum dagang Eropa, Staatsblad Tahun 1849 Nomor 25).
+            
+            Terbatasnya pelayanan catatan sipil tersebut sejalan dengan politik Pemerintah Hindia Belanda yang membagi dan menggolongkan penduduk berdasarkan Pasal 131 dan 163 IS (*Indische Staatsregeling*) menjadi 3 golongan: Golongan Eropa, Timur Asing, dan Pribumi.
+            """)
+
+            st.markdown("##### **Masa Pendudukan Jepang (1942–1945)**")
+            st.write("""
+            Pada masa pendudukan Jepang, nama *Bergerlijke Stand* (BS) diganti menjadi **"Cacah Jiwa"** dan lembaganya disebut **"Kantor Pencacah Jiwa"**. Penggunaan istilah "jiwa" diambil dari bunyi Kitab Undang-Undang Hukum Sipil bahwa catatan sipil diartikan sebagai "pendaftaran jiwa". Nomor dan penanggalan akta pada masa ini menggunakan tahun penanggalan Jepang.
+            """)
+
+            st.markdown("##### **Pasca Kemerdekaan dan Era Orde Baru**")
+            st.write("""
+            Setelah Proklamasi Kemerdekaan 17 Agustus 1945, penyelenggaraan pencatatan sipil diambil alih oleh Pemerintah Republik Indonesia. Berdasarkan hasil Kongres Bahasa ke-2 di Medan pada tahun 1950, istilah *Bergerlijke Stand* diterjemahkan secara resmi menjadi **Catatan Sipil**.
+            
+            Pada masa pemerintahan Walikota Soediro menjelang tahun 1957, Jakarta berubah status menjadi Daerah Istimewa (Chusus) Tingkat I. Kantor catatan sipil di Jakarta kemudian disatukan menjadi **Kantor Catatan Sipil DCI Jakarta Raya** yang berlokasi di Jl. Pintu Besar Utara No. 12 Kota, dengan Kepala Kantor pertama yang dijabat oleh orang Indonesia setelah kemerdekaan yaitu **Bapak H. Pratiknyo**.
+            
+            Perubahan politik mendasar terjadi pasca peristiwa G30S/PKI pada tahun 1965 di bawah Pemerintahan Orde Baru pimpinan Presiden Soeharto. Melalui Instruksi Presidium Kabinet Ampera No. 31/In/U/12/66, penyelenggaraan catatan sipil dinyatakan terbuka untuk seluruh penduduk, baik Warga Negara Indonesia maupun Warga Negara Asing, yang menjadi landasan kuat bagi arah kebijakan dan perkembangan pembangunan layanan kependudukan di Indonesia hingga saat ini.
+            """)
 
     with selected_tab[2]:
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("### 🌐 Sistem Layanan Online Masyarakat")
-        st.write("Silakan pilih ekosistem aplikasi resmi Disdukcapil DKI Jakarta.")
+        st.write("Silakan pilih ekosistem aplikasi resmi Disdukcapil DKI Jakarta sesuai dengan kebutuhan administrasi Anda:")
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        col_layanan_1, col_layanan_2 = st.columns(2, gap="medium")
+        
+        with col_layanan_1:
+            st.markdown("""
+            <div style="background-color: #FFFBEB; border: 1px solid #FDE68A; border-radius: 16px; padding: 24px; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h4 style="color: #92400E; margin-top: 0; font-weight: 700;">🥑 Alpukat Betawi</h4>
+                    <p style="color: #78350F; font-size: 13px; font-weight: 600; margin-bottom: 8px;">Akses Langsung Pelayanan Dokumen Cepat & Akurat</p>
+                    <p style="color: #92400E; font-size: 13px; line-height: 1.5;">Platform mandiri terintegrasi untuk pengajuan Akta Kelahiran, Pencatatan Kartu Keluarga (KK), Kartu Identitas Anak (KIA), surat keterangan Pindah Datang, serta sinkronisasi database kependudukan secara real-time.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="https://alpukat-dukcapil.jakarta.go.id/" target="_blank" style="background: #D97706; color: white; padding: 10px 18px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 13px; display: inline-block;">Buka Alpukat Betawi →</a>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+        with col_layanan_2:
+            st.markdown("""
+            <div style="background-color: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 16px; padding: 24px; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h4 style="color: #166534; margin-top: 0; font-weight: 700;">📱 Identitas Kependudukan Digital (IKD)</h4>
+                    <p style="color: #14532D; font-size: 13px; font-weight: 600; margin-bottom: 8px;">KTP Digital dalam Genggaman Anda</p>
+                    <p style="color: #166534; font-size: 13px; line-height: 1.5;">Aplikasi resmi dari Ditjen Dukcapil Kemendagri untuk mentransformasikan KTP fisik ke dalam smartphone Anda. Dilengkapi dengan fitur QR Code aman untuk proses verifikasi data tanpa perlu berkas fotokopi.</p>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="https://www.instagram.com/p/CpKUXYhpUwx/" target="_blank" style="background: #16A34A; color: white; padding: 10px 18px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 13px; display: inline-block;">Panduan Aktivasi IKD →</a>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""
+        <div style="background-color: #FFFBEB; border-left: 5px solid #F59E0B; padding: 14px 18px; border-radius: 10px;">
+            <span style="font-weight: 700; color: #92400E; font-size: 13px;">⚠️ Catatan Penting:</span>
+            <span style="color: #92400E; font-size: 13px;"> Pastikan Anda menggunakan data perseorangan yang valid saat registrasi untuk menghindari penolakan sistem otomatis.</span>
+        </div>
+        """, unsafe_allow_html=True)
 
     with selected_tab[3]:
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("### ⚖️ Dasar Hukum & Regulasi Adminduk")
+        st.write("Klik pada judul regulasi di bawah ini untuk melihat detail peraturan:")
+        st.markdown("<br>", unsafe_allow_html=True)
+        
         with st.expander("📄 UU Nomor 24 Tahun 2013 tentang Administrasi Kependudukan"):
-            st.write("Undang-Undang yang mengatur pengurusan dokumen kependudukan gratis dan KTP seumur hidup.")
+            st.write("Perubahan atas Undang-Undang Nomor 23 Tahun 2006 yang menegaskan bahwa pengurusan dan penerbitan dokumen kependudukan **tidak dipungut biaya (GRATIS)** bagi seluruh warga negara.")
+        
+        with st.expander("📄 Perpres Nomor 96 Tahun 2018"):
+            st.write("Mengatur tentang Tata Cara Pendaftaran Penduduk dan Pencatatan Sipil, yang memangkas berbagai birokrasi dan syarat pengantar (RT/RW) untuk beberapa jenis dokumen transisi.")
+            
+        with st.expander("📄 Pergub DKI Jakarta Nomor 57 Tahun 2022"):
+            st.write("Peraturan Gubernur mengenai Organisasi dan Tata Kerja Perangkat Daerah, yang mendasari fungsi, kedudukan, serta wewenang operasional Disdukcapil Provinsi DKI Jakarta.")
 
     with selected_tab[4]:
         st.markdown("<br>", unsafe_allow_html=True)
         st.markdown("### 📞 Hubungi Kami")
-        st.write("Dinas Kependudukan dan Pencatatan Sipil DKI Jakarta - Jl. Letjen S. Parman No.7.")
+        st.write("Hubungi pusat bantuan atau kunjungi kantor operasional kami melalui detail informasi di bawah ini:")
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        col_c1, col_c2 = st.columns(2, gap="medium")
+        
+        with col_c1:
+            st.markdown("""
+            <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px; margin-bottom: 16px;">
+                <div style="font-weight: 700; color: #1E293B; font-size: 15px; margin-bottom: 8px;">📍 Alamat Kantor Pusat</div>
+                <div style="font-weight: 600; color: #334155; font-size: 13px; margin-bottom: 4px;">Dinas Kependudukan dan Pencatatan Sipil DKI Jakarta</div>
+                <div style="color: #64748B; font-size: 13px; line-height: 1.5;">Jl. Letjen S. Parman No.7, RT.3/RW.3, Tomang, Kec. Grogol petamburan, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11440</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("""
+            <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px;">
+                <div style="font-weight: 700; color: #1E293B; font-size: 15px; margin-bottom: 8px;">✉️ Korespondensi Email</div>
+                <div style="color: #64748B; font-size: 13px; margin-bottom: 6px;">Kirimkan surat elektronik resmi instansi atau pertanyaan umum ke:</div>
+                <div style="font-weight: 600; color: #2563EB; font-size: 13px;">dinas_dukcapil@jakarta.go.id</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+        with col_c2:
+            st.markdown("""
+            <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px; margin-bottom: 16px;">
+                <div style="font-weight: 700; color: #1E293B; font-size: 15px; margin-bottom: 8px;">💬 WhatsApp Pengaduan & Hotline</div>
+                <div style="color: #64748B; font-size: 13px; margin-bottom: 6px;">Masyarakat dapat melakukan konsultasi aktif pada hari kerja:</div>
+                <div style="font-weight: 700; color: #16A34A; font-size: 15px; margin-bottom: 4px;">+81212012031</div>
+                <div style="color: #64748B; font-size: 12px;">🕒 Senin - Jumat | 08.00 - 16.00 WIB</div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("""
+            <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px;">
+                <div style="font-weight: 700; color: #1E293B; font-size: 15px; margin-bottom: 8px;">🌐 Media Sosial Resmi</div>
+                <div style="color: #64748B; font-size: 13px; margin-bottom: 6px;">Pantau informasi infografis terkini melalui kanal berita digital kami:</div>
+                <div style="color: #334155; font-size: 13px; line-height: 1.6;">
+                    📸 Instagram: <b>@dukcapiljakarta</b><br>
+                    🐦 X / Twitter: <b>@dukcapiljakarta</b>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("""
+        <div style="background-color: #EFF6FF; border-left: 5px solid #3B82F6; padding: 14px 18px; border-radius: 10px;">
+            <span style="font-weight: 700; color: #1E40AF; font-size: 13px;">🚇 Akses Transportasi:</span>
+            <span style="color: #1E40AF; font-size: 13px;"> Kantor pusat berlokasi strategis di koridor utama koridor S. Parman, sangat dekat dari halte integrasi TransJakarta Tomang.</span>
+        </div>
+        """, unsafe_allow_html=True)
 
 with col_chatbot_kanan:
     st.markdown("""
@@ -278,14 +441,17 @@ with col_chatbot_kanan:
             
         with chat_container:
             with st.spinner("Mencari informasi..."):
-                if query_engine:
-                    try:
-                        response = query_engine.query(prompt)
-                        reply = str(response)
-                    except Exception as e:
-                        reply = f"Maaf, terjadi kesalahan teknis: {e}"
-                else:
-                    reply = "Maaf, basis data atau sistem RAG belum siap."
+                try:
+                    res = requests.post(BACKEND_URL, json={"message": prompt}, timeout=30)
+                    if res.status_code == 200:
+                        data = res.json()
+                        reply = data.get("reply", "Maaf, format balasan tidak valid.")
+                    else:
+                        reply = f"Gagal terhubung ke server backend (Error {res.status_code})."
+                except requests.exceptions.ConnectionError:
+                    reply = "Maaf, server backend FastAPI belum menyala. Harap jalankan `main.py` terlebih dahulu."
+                except Exception as e:
+                    reply = f"Terjadi kesalahan koneksi: {e}"
                 
                 st.chat_message("assistant", avatar="🤖").write(reply)
                 
