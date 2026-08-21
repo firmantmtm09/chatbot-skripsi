@@ -30,7 +30,7 @@ def get_query_engine():
     groq_api_key = os.getenv("GROQ_API_KEY") or st.secrets.get("GROQ_API_KEY", "")
     
     # Inisialisasi Model LLM & Embeddings
-    llm = Groq(model="llama3-8b-8192", api_key=groq_api_key, temperature=0, max_tokens=1000)
+    llm = Groq(model="openai/gpt-oss-20b", api_key=groq_api_key, temperature=0, max_tokens=1000)
     
     Settings.llm = llm
     Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
