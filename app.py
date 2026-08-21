@@ -1,7 +1,17 @@
 import os
-import requests
 import streamlit as st
+from dotenv import load_dotenv
 from frontend.styles import apply_custom_css, render_hero_section
+
+# Import pustaka LlamaIndex & Groq (diambil dari main.py)
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
+from llama_index.core.prompts import PromptTemplate
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.core.node_parser import TokenTextSplitter
+from llama_index.llms.groq import Groq
+
+# Load environment variable
+load_dotenv()
 
 st.set_page_config(
     page_title="Portal Resmi Dukcapil DKI Jakarta",
@@ -11,8 +21,55 @@ st.set_page_config(
 
 apply_custom_css()
 
-BACKEND_URL = "http://127.0.0.1:8000/chat"
+# ==============================================================================
+# FUNGSI INISIALISASI RAG & CHATBOT (Di-cache agar aplikasi tetap ringan & cepat)
+# ==============================================================================
+@st.cache_resource(show_spinner="Memuat basis pengetahuan Dukcapil...")
+def get_query_engine():
+    # Mengambil API Key dari file .env (lokal) atau Streamlit Secrets (cloud)
+    groq_api_key = os.getenv("GROQ_API_KEY") or st.secrets.get("GROQ_API_KEY", "")
+    
+    # Inisialisasi Model LLM & Embeddings
+    llm = Groq(model="llama3-8b-8192", api_key=groq_api_key, temperature=0, max_tokens=1000)
+    
+    Settings.llm = llm
+    Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+    Settings.text_splitter = TokenTextSplitter(chunk_size=300, chunk_overlap=30)
+    
+    # Pencarian lokasi folder Data
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    data_path = os.path.abspath(os.path.join(BASE_DIR, "..", "Data"))
+    
+    if not os.path.exists(data_path):
+        data_path = os.path.join(BASE_DIR, "Data")
+        
+    documents = SimpleDirectoryReader(data_path).load_data()
+    index = VectorStoreIndex.from_documents(documents)
+    
+    system_prompt = (
+        "Kamu adalah asisten virtual resmi Dukcapil DKI Jakarta. "
+        "Jawablah pertanyaan berdasarkan informasi yang ada di dalam context. "
+        "Jika informasi tidak ditemukan secara tersurat, cobalah cari makna yang paling mendekati. "
+        "Jangan mengurangi atau mengubah angka, syarat, atau ketentuan spesifik yang ada di dalam dokumen. "
+        "Gunakan format bullet points dan awali dengan sapaan ramah.\n\n"
+        "Context:\n{context_str}\n\n"
+        "Pertanyaan: {query_str}\n"
+        "Jawaban:"
+    )
+    
+    template = PromptTemplate(system_prompt)
+    return index.as_query_engine(text_qa_template=template, similarity_top_k=8)
 
+# Inisialisasi Query Engine
+try:
+    query_engine = get_query_engine()
+except Exception as e:
+    query_engine = None
+    st.error(f"Gagal memuat basis data chatbot: {e}")
+
+# ==============================================================================
+# TAMPILAN PORTAL DUKCAPIL
+# ==============================================================================
 st.markdown("""
 <style>
     .block-container {
@@ -416,6 +473,9 @@ with col_portal_kiri:
         </div>
         """, unsafe_allow_html=True)
 
+# ==============================================================================
+# LOGIKA FITUR CHATBOT DI KOLOM KANAN
+# ==============================================================================
 with col_chatbot_kanan:
     st.markdown("""
     <div class="chat-header">
@@ -441,17 +501,15 @@ with col_chatbot_kanan:
             
         with chat_container:
             with st.spinner("Mencari informasi..."):
-                try:
-                    res = requests.post(BACKEND_URL, json={"message": prompt}, timeout=30)
-                    if res.status_code == 200:
-                        data = res.json()
-                        reply = data.get("reply", "Maaf, format balasan tidak valid.")
-                    else:
-                        reply = f"Gagal terhubung ke server backend (Error {res.status_code})."
-                except requests.exceptions.ConnectionError:
-                    reply = "Maaf, server backend FastAPI belum menyala. Harap jalankan `main.py` terlebih dahulu."
-                except Exception as e:
-                    reply = f"Terjadi kesalahan koneksi: {e}"
+                if query_engine is not None:
+                    try:
+                        # Eksekusi RAG LlamaIndex secara langsung tanpa HTTP Request
+                        response = query_engine.query(prompt)
+                        reply = str(response)
+                    except Exception as e:
+                        reply = f"Maaf, terjadi kesalahan teknis saat memproses jawaban: {e}"
+                else:
+                    reply = "Maaf, sistem RAG belum siap atau dokumen belum berhasil dimuat."
                 
                 st.chat_message("assistant", avatar="🤖").write(reply)
                 
