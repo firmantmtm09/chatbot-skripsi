@@ -3,14 +3,12 @@ import streamlit as st
 from dotenv import load_dotenv
 from frontend.styles import apply_custom_css, render_hero_section
 
-# Import pustaka LlamaIndex & Groq (diambil dari main.py)
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.core.prompts import PromptTemplate
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.core.node_parser import TokenTextSplitter
 from llama_index.llms.groq import Groq
 
-# Load environment variable
 load_dotenv()
 
 st.set_page_config(
@@ -21,22 +19,16 @@ st.set_page_config(
 
 apply_custom_css()
 
-# ==============================================================================
-# FUNGSI INISIALISASI RAG & CHATBOT (Di-cache agar aplikasi tetap ringan & cepat)
-# ==============================================================================
 @st.cache_resource(show_spinner="Memuat basis pengetahuan Dukcapil...")
 def get_query_engine():
-    # Mengambil API Key dari file .env (lokal) atau Streamlit Secrets (cloud)
     groq_api_key = os.getenv("GROQ_API_KEY") or st.secrets.get("GROQ_API_KEY", "")
     
-    # Inisialisasi Model LLM & Embeddings
     llm = Groq(model="openai/gpt-oss-20b", api_key=groq_api_key, temperature=0, max_tokens=1000)
     
     Settings.llm = llm
     Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
     Settings.text_splitter = TokenTextSplitter(chunk_size=300, chunk_overlap=30)
     
-    # Pencarian lokasi folder Data
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     data_path = os.path.abspath(os.path.join(BASE_DIR, "..", "Data"))
     
@@ -63,16 +55,12 @@ def get_query_engine():
     
     return query_engine
 
-# Inisialisasi Query Engine
 try:
     query_engine = get_query_engine()
 except Exception as e:
     query_engine = None
     st.error(f"Gagal memuat basis data chatbot: {e}")
 
-# ==============================================================================
-# TAMPILAN PORTAL DUKCAPIL
-# ==============================================================================
 st.markdown("""
 <style>
     .block-container {
