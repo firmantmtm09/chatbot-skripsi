@@ -23,7 +23,7 @@ Streamlit UI (app.py)
 LlamaIndex RAG Pipeline
     ├── Embedding  : BAAI/bge-small-en-v1.5 (HuggingFace)
     ├── Vector Store: VectorStoreIndex (In-Memory)
-    └── LLM        : llama-3.1-8b-instant via Groq API
+    └── LLM        : openai/gpt-oss-20b via Groq API
     │
     ▼
 Knowledge Base (Data/Dokumen_LayananPublik.pdf)
